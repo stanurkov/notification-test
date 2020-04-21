@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+       var electron=require('electron');
+       electron.ipcRenderer.on('post', 
+	 function (event, ...params) { 
+           console.log('POSTED: ', ...params); 
+           var e=document.getElementById('clickres');
+           if (e) e.innerText = params[0];
+       });
+    </script>
+  </head>
+  <body>
+    <div style="font-size: 200%; margin: 40px" onclick="electron.ipcRenderer.send('show')">
+       Click me to show a new toast! :)
+    </div>
+    <div id="clickres">
+    </div>
+  </body>
+</html>
